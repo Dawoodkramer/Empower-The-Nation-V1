@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_content_main)
 
+        // Set up the AppBarConfiguration for handling the navigation drawer and up button behavior
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        // Set up NavigationItemSelectedListener for the drawer menu items
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
@@ -66,11 +68,12 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.nav_paymentmethod)
                 }
             }
-            drawerLayout.closeDrawers()
+            drawerLayout.closeDrawers()  // Close the drawer after a selection is made
             true
         }
     }
 
+    // Handle navigation with the "Up" button in the ActionBar
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
